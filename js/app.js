@@ -36,18 +36,10 @@ function register() {
 }
 
 function registerCallback(resp) {
-    console.log(resp); // todo: remove
-    if (typeof resp === 'string') {
-        alert(resp);
-    } else if (resp.result.indexOf("Error:") !== -1) {
-        alert(resp.result);
-    } else {
+    if (!handleCallbackError(resp)) {
         $('#upicRO').val(resp.result);
 
-        $('#drugName').prop('disabled', true);
-        $('#drugCode').prop('disabled', true);
-        $('#bestBefore').prop('disabled', true);
-        $('#register').prop('disabled', true);
+        disableRegisterForm(true);
         $('#register').text('Registration in progress...');
 
         var intervalId = setInterval(function () {
@@ -58,10 +50,7 @@ function registerCallback(resp) {
                     if (respObject.code === 0) {
                         clearInterval(intervalId);
 
-                        $('#drugName').prop('disabled', false);
-                        $('#drugCode').prop('disabled', false);
-                        $('#bestBefore').prop('disabled', false);
-                        $('#register').prop('disabled', false);
+                        disableRegisterForm(false);
                         $('#register').text('Register');
 
                         alert('Registration successful!');
@@ -95,12 +84,7 @@ function check() {
 }
 
 function checkCallback(resp) {
-    console.log(resp); // todo: remove
-    if (typeof resp === 'string') {
-        alert(resp);
-    } else if (resp.result.indexOf("Error:") !== -1) {
-        alert(resp.result);
-    } else {
+    if (!handleCallbackError(resp)) {
         var drugEntry = JSON.parse(resp.result);
         $('#drugNameResult').text(drugEntry.drugName);
         $('#drugCodeResult').text(drugEntry.drugCode);
@@ -114,4 +98,24 @@ function checkCallback(resp) {
             behavior: "smooth"
         })
     }
+}
+
+function disableRegisterForm(disable) {
+    $('#drugName').prop('disabled', disable);
+    $('#drugCode').prop('disabled', disable);
+    $('#bestBefore').prop('disabled', disable);
+    $('#register').prop('disabled', disable);
+}
+
+function handleCallbackError(resp) {
+    console.log(resp); // todo: remove
+    if (typeof resp === 'string') {
+        alert(resp);
+    } else if (resp.result.indexOf("Error:") !== -1) {
+        alert(resp.result);
+    } else {
+        return false;
+    }
+
+    return true;
 }
