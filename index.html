@@ -43,7 +43,7 @@
     <div class="card-header">Customer UI</div>
     <div class="card-body">
         <h5 class="card-title">Check your drug</h5>
-        <form>
+        <form id="checkForm">
             <div class="form-group">
                 <label for="upic">UPIC</label>
                 <input type="text" class="form-control" id="upic" placeholder="" maxlength="64" required>
@@ -51,23 +51,23 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" id="check">Check</button>
             </div>
-            <table class="table checkResult">
+            <table class="table" id="checkResult">
                 <tbody>
                 <tr>
                     <th scope="row">Drug name</th>
-                    <td>Test name</td>
+                    <td id="drugNameResult"></td>
                 </tr>
                 <tr>
                     <th scope="row">Drug code</th>
-                    <td>Test code</td>
+                    <td id="drugCodeResult"></td>
                 </tr>
                 <tr>
                     <th scope="row">Best before</th>
-                    <td>08/03/2021</td>
+                    <td id="bestBeforeResult"></td>
                 </tr>
                 <tr>
                     <th scope="row">Date added</th>
-                    <td>05/12/2018</td>
+                    <td id="dateAddedResult"></td>
                 </tr>
                 </tbody>
             </table>

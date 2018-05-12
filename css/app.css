@@ -2,6 +2,10 @@
     display: none;
 }
 
-.checkResult tr th {
+#checkResult {
+    display: none;
+}
+
+#checkResult tr th {
     width: 200px;
 }
