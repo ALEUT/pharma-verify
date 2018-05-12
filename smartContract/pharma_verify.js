@@ -60,6 +60,8 @@ PharmaVerify.prototype = {
         );
 
         this.drugs.put(upic, drugEntry);
+
+        return upic;
     },
 
     get: function (upic) {
