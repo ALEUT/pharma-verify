@@ -28,7 +28,7 @@ function register() {
         listener: registerCallback
     });
 
-    $('#upicRO').val(resp.result);
+    $('#upicRO').val(upic);
 
     return false;
 }
