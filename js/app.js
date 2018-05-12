@@ -28,13 +28,13 @@ function register() {
         listener: registerCallback
     });
 
+    $('#upicRO').val(resp.result);
+
     return false;
 }
 
 function registerCallback(resp) {
     if (!handleCallbackError(resp)) {
-        $('#upicRO').val(resp.result);
-
         disableRegisterForm(true);
         $('#register').text('Registration in progress...');
 
