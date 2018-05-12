@@ -3,7 +3,6 @@ var NebPay = require("nebpay");
 var nebPay = new NebPay();
 
 var transactionId;
-var intervalId;
 
 window.addEventListener("load", function () {
     var isExtensionExist = typeof(webExtensionWallet) !== "undefined";
@@ -51,7 +50,7 @@ function registerCallback(resp) {
         $('#register').prop('disabled', true);
         $('#register').text('Registration in progress...');
 
-        intervalId = setInterval(function () {
+        var intervalId = setInterval(function () {
             nebPay.queryPayInfo(transactionId)
                 .then(function (resp) {
                     console.log("tx result: " + resp);
