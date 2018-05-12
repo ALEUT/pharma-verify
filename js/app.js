@@ -35,27 +35,28 @@ function register() {
 
 function registerCallback(resp) {
     if (!handleCallbackError(resp)) {
-        disableRegisterForm(true);
-        $('#register').text('Registration in progress...');
+        alert("Registration successful!");
+        //disableRegisterForm(true);
+        //$('#register').text('Registration in progress...');
 
-        var intervalId = setInterval(function () {
-            nebPay.queryPayInfo(transactionId)
-                .then(function (resp) {
-                    console.log("tx result: " + resp);
-                    var respObject = JSON.parse(resp);
-                    if (respObject.code === 0) {
-                        clearInterval(intervalId);
-
-                        disableRegisterForm(false);
-                        $('#register').text('Register');
-
-                        alert('Registration successful!');
-                    }
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
-        }, 15000);
+        // var intervalId = setInterval(function () {
+        //     nebPay.queryPayInfo(transactionId)
+        //         .then(function (resp) {
+        //             console.log("tx result: " + resp);
+        //             var respObject = JSON.parse(resp);
+        //             if (respObject.code === 0) {
+        //                 clearInterval(intervalId);
+        //
+        //                 disableRegisterForm(false);
+        //                 $('#register').text('Register');
+        //
+        //                 alert('Registration successful!');
+        //             }
+        //         })
+        //         .catch(function (err) {
+        //             console.log(err);
+        //         });
+        // }, 15000);
     }
 }
 
