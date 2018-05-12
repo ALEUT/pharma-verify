@@ -55,7 +55,7 @@ function registerCallback(resp) {
                 .catch(function (err) {
                     console.log(err);
                 });
-        }, 5000);
+        }, 15000);
     }
 }
 
