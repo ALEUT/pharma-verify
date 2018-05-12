@@ -1,0 +1,66 @@
+<html>
+<head>
+    <link rel="stylesheet" href="lib/bootstrap-4.1.1-dist/css/bootstrap.css">
+    <script src="lib/bootstrap-4.1.1-dist/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+<div class="card">
+    <div class="card-header">Pharmaceutical company UI</div>
+    <div class="card-body">
+        <h5 class="card-title">Register new drug</h5>
+        <form>
+            <div class="form-group">
+                <label for="drugName">Drug name</label>
+                <input type="text" class="form-control" id="drugName" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="drugCode">Drug code</label>
+                <input type="text" class="form-control" id="drugCode" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="bestBefore">Best before</label>
+                <input type="text" class="form-control" id="bestBefore" placeholder="08/03/2021">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+            <div class="form-group">
+                <label for="upicCodeRO">UPIC code</label>
+                <input type="text" class="form-control" id="upicCodeRO" placeholder="" readonly>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">Customer UI</div>
+    <div class="card-body">
+        <h5 class="card-title">Check your drug</h5>
+        <form>
+            <div class="form-group">
+                <label for="upicCode">UPIC code</label>
+                <input type="text" class="form-control" id="upicCode" placeholder="">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Check</button>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row" style="width: 200px">Drug name</th>
+                    <td>Test name</td>
+                </tr>
+                <tr>
+                    <th scope="row">Drug code</th>
+                    <td>Test code</td>
+                </tr>
+                <tr>
+                    <th scope="row">Best before</th>
+                    <td>08/03/2021</td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
