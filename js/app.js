@@ -1,4 +1,4 @@
-var dappAddress = "test"; // todo: fill
+var dappAddress = "n1ft2BFmyJFyyQksUxxYh7B3FsiH3vVQbsi";
 var NebPay = require("nebpay");
 var nebPay = new NebPay();
 
