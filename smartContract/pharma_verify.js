@@ -1,11 +1,12 @@
 "use strict";
 
-var DrugEntry = function (company, upic, drugName, drugCode, bestBefore) {
+var DrugEntry = function (company, upic, drugName, drugCode, bestBefore, dateAdded) {
     this.company = company;
     this.upic = upic;
     this.drugName = drugName;
     this.drugCode = drugCode;
     this.bestBefore = bestBefore;
+    this.dateAdded = dateAdded;
 };
 
 var PharmaVerify = function () {
@@ -18,7 +19,8 @@ var PharmaVerify = function () {
                 drugEntry.upic,
                 drugEntry.drugName,
                 drugEntry.drugCode,
-                drugEntry.bestBefore
+                drugEntry.bestBefore,
+                drugEntry.dateAdded
             );
         },
         stringify: function (drugEntry) {
@@ -46,13 +48,15 @@ PharmaVerify.prototype = {
         drugName = drugName.trim();
         drugCode = drugCode.trim();
         bestBefore = bestBefore.trim();
+        var dateAdded = new Date().toLocaleDateString("en-US");
 
         var drugEntry = new DrugEntry(
             company,
             upic,
             drugName,
             drugCode,
-            bestBefore
+            bestBefore,
+            dateAdded
         );
 
         this.drugs.put(upic, drugEntry);
