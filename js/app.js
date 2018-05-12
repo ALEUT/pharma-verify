@@ -1,4 +1,4 @@
-var dappAddress = "n1ft2BFmyJFyyQksUxxYh7B3FsiH3vVQbsi";
+var dappAddress = "n1i4GALDhsaM4cBJbdossuHxrsNDnDEumu6";
 var NebPay = require("nebpay");
 var nebPay = new NebPay();
 
@@ -27,10 +27,6 @@ function register() {
     transactionId = nebPay.call(dappAddress, 0, func, JSON.stringify(args), {
         listener: registerCallback
     });
-    // transactionId = 123;
-    // registerCallback({
-    //     result: "123"
-    // });
 
     return false;
 }
@@ -71,14 +67,6 @@ function check() {
     nebPay.simulateCall(dappAddress, 0, func, JSON.stringify(args), {
         listener: checkCallback
     });
-    // checkCallback({
-    //     result: JSON.stringify({
-    //         drugName: 'Test name',
-    //         drugCode: 'Test code',
-    //         bestBefore: '03/04/2019',
-    //         dateAdded: '05/12/2018'
-    //     })
-    // });
 
     return false;
 }
@@ -89,7 +77,6 @@ function checkCallback(resp) {
         $('#drugNameResult').text(drugEntry.drugName);
         $('#drugCodeResult').text(drugEntry.drugCode);
         $('#bestBeforeResult').text(drugEntry.bestBefore);
-        $('#dateAddedResult').text(drugEntry.dateAdded);
 
         $('#checkResult').show();
 
@@ -111,7 +98,7 @@ function handleCallbackError(resp) {
     console.log(resp); // todo: remove
     if (typeof resp === 'string') {
         alert(resp);
-    } else if (resp.result.indexOf("Error:") !== -1) {
+    } else if (typeof resp.result === 'string' && resp.result.indexOf("Error:") !== -1) {
         alert(resp.result);
     } else {
         return false;

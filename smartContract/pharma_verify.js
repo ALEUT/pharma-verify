@@ -1,30 +1,35 @@
 "use strict";
 
-var DrugEntry = function (company, upic, drugName, drugCode, bestBefore, dateAdded) {
-    this.company = company;
-    this.upic = upic;
-    this.drugName = drugName;
-    this.drugCode = drugCode;
-    this.bestBefore = bestBefore;
-    this.dateAdded = dateAdded;
+var DrugEntry = function (text) {
+    if (text) {
+        var obj = JSON.parse(text);
+        this.company = obj.company;
+        this.upic = obj.upic;
+        this.drugName = obj.drugName;
+        this.drugCode = obj.drugCode;
+        this.bestBefore = obj.bestBefore;
+    } else {
+        this.company = "";
+        this.upic = "";
+        this.drugName = "";
+        this.drugCode = "";
+        this.bestBefore = "";
+    }
+};
+
+DrugEntry.prototype = {
+    toString: function () {
+        return JSON.stringify(this);
+    }
 };
 
 var PharmaVerify = function () {
     LocalContractStorage.defineMapProperty(this, "drugs", {
         parse: function (text) {
-            var drugEntry = JSON.parse(text);
-
-            return new DrugEntry(
-                drugEntry.company,
-                drugEntry.upic,
-                drugEntry.drugName,
-                drugEntry.drugCode,
-                drugEntry.bestBefore,
-                drugEntry.dateAdded
-            );
+            return new DrugEntry(text);
         },
         stringify: function (drugEntry) {
-            return JSON.stringify(drugEntry);
+            return drugEntry.toString();
         }
     });
 };
@@ -43,25 +48,14 @@ PharmaVerify.prototype = {
             throw new Error("UPIC should be unique");
         }
 
-        var company = Blockchain.transaction.from;
-        upic = upic.trim();
-        drugName = drugName.trim();
-        drugCode = drugCode.trim();
-        bestBefore = bestBefore.trim();
-        var dateAdded = new Date().toLocaleDateString("en-US");
-
-        var drugEntry = new DrugEntry(
-            company,
-            upic,
-            drugName,
-            drugCode,
-            bestBefore,
-            dateAdded
-        );
+        var drugEntry = new DrugEntry();
+        drugEntry.company = Blockchain.transaction.from;
+        drugEntry.upic = upic.trim();
+        drugEntry.drugName = drugName.trim();
+        drugEntry.drugCode = drugCode.trim();
+        drugEntry.bestBefore = bestBefore.trim();
 
         this.drugs.put(upic, drugEntry);
-
-        return upic;
     },
 
     get: function (upic) {
