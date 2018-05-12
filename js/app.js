@@ -74,16 +74,20 @@ function check() {
 function checkCallback(resp) {
     if (!handleCallbackError(resp)) {
         var drugEntry = JSON.parse(resp.result);
-        $('#drugNameResult').text(drugEntry.drugName);
-        $('#drugCodeResult').text(drugEntry.drugCode);
-        $('#bestBeforeResult').text(drugEntry.bestBefore);
+        if (drugEntry !== null) {
+            $('#drugNameResult').text(drugEntry.drugName);
+            $('#drugCodeResult').text(drugEntry.drugCode);
+            $('#bestBeforeResult').text(drugEntry.bestBefore);
 
-        $('#checkResult').show();
+            $('#checkResult').show();
 
-        window.scrollBy({
-            top: 185,
-            behavior: "smooth"
-        })
+            window.scrollBy({
+                top: 185,
+                behavior: "smooth"
+            })
+        } else {
+            alert('Drug with given UPIC not found.');
+        }
     }
 }
 
